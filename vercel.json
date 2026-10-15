@@ -9,9 +9,6 @@
     },
     "server": {
       "root": "apps/server",
-      "buildCommand": "npm run build",
-      "entrypoint": "dist/index.js",
-      "bindings": [],
       "framework": "express"
     }
   },
