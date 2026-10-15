@@ -11,7 +11,11 @@ import {
   ServerToClientEvents,
 } from '@uno-arena/shared';
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:4000';
+// In production on Vercel, connect to the same origin (empty string) so the
+// /socket.io/* rewrite proxies traffic to the server service automatically.
+// In local dev, fall back to the standalone server on port 4000.
+const SERVER_URL = import.meta.env.VITE_SERVER_URL ||
+  (import.meta.env.PROD ? '' : 'http://localhost:4000');
 
 interface MultiplayerState {
   socket: Socket<ServerToClientEvents, ClientToServerEvents> | null;
