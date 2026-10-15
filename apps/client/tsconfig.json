@@ -12,7 +12,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "@uno-arena/shared": ["../../packages/shared/src/index.ts"],
+      "@uno-arena/game-engine": ["../../packages/game-engine/src/index.ts"]
+    }
   },
   "include": ["src"]
 }

@@ -12,14 +12,15 @@
     "dev": "concurrently -n \"server,client\" -c \"magenta,cyan\" \"npm run dev:server\" \"npm run dev:client\"",
     "dev:server": "npm run dev --workspace=@uno-arena/server",
     "dev:client": "npm run dev --workspace=@uno-arena/client",
-    "build": "npm run build --workspaces --if-present",
+    "build": "npm run build --workspace=@uno-arena/shared && npm run build --workspace=@uno-arena/game-engine && npm run build --workspace=@uno-arena/server && npm run build --workspace=@uno-arena/client",
     "test": "npm run test --workspaces --if-present",
     "test:engine": "npm run test --workspace=@uno-arena/game-engine",
     "test:server": "npm run test --workspace=@uno-arena/server",
     "test:client": "npm run test --workspace=@uno-arena/client",
     "test:e2e": "playwright test",
     "lint": "npm run lint --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "postinstall": "npm run build --workspace=@uno-arena/shared && npm run build --workspace=@uno-arena/game-engine"
   },
   "keywords": [
     "uno",
