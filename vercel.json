@@ -1,0 +1,46 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+
+  "buildCommand": "npm install && npm run build --workspace=@uno-arena/client",
+  "outputDirectory": "apps/client/dist",
+  "installCommand": "npm install",
+  "framework": null,
+
+  "rewrites": [
+    {
+      "source": "/socket.io/(.*)",
+      "destination": "https://your-server-url.up.railway.app/socket.io/$1"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "https://your-server-url.up.railway.app/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
+
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
